@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Unwritten
 
-## Getting Started
+The website for [Unwritten](https://unwritten.care), an initiative that funds school-supply essentials so every student can take part.
 
-First, run the development server:
+Built with Next.js and deployed on Vercel. Pushing to `main` publishes the site.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Updating the kit count
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Change `kitsDelivered` in `src/lib/site.ts`. The home page, descriptions and share card all read it.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Writing a blog post
 
-## Learn More
+Add a Markdown file to `content/blog`. The file name becomes the address, so `first-delivery.md` lives at `/blog/first-delivery`.
 
-To learn more about Next.js, take a look at the following resources:
+```markdown
+---
+title: First delivery
+description: One line shown under the title.
+category: Research & Insights
+date: 2026-11-06
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The post starts here.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Images
 
-## Deploy on Vercel
+Put images in `public/blog/<post-name>/`. Add a cover at the top of the file; it appears in the blog list and on the post:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```markdown
+cover: /blog/first-delivery/cover.jpg
+coverAlt: Students opening their new school supplies
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Place an image inside a post with Markdown:
+
+```markdown
+![What the image shows](/blog/first-delivery/classroom.jpg)
+```
+
+The `coverAlt` and bracket text describe the image for people who can't see it. Covers are cropped to fit, so keep the main subject near the middle.
+
+Add `draft: true` to the top section to keep a post off the live site. Drafts still appear on the dev server, so you can check them first. `content/blog/bona-school-materials-2025.md` shows the formatting.
+
+The blog page and its links appear once at least one post isn't a draft.
